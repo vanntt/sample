@@ -10,7 +10,7 @@ mysql.openConnection()
 app.use logfmt.requestLogger()
 
 app.get '/',(req, res) ->
-  queryStr = 'create table '+
+  queryStr = 'create table IF NOT EXISTS '+
     Mysql.TABLE+
     '(name varchar(400))'
 
@@ -28,7 +28,7 @@ app.get '/add',(req, res) ->
 
   queryStr = 'insert into '+
     Mysql.TABLE+
-    '(name) values('+name+')'
+    '(name) values(\''+name+'\')'
 
   mysql.query queryStr, (err, docs) ->
     if !err
