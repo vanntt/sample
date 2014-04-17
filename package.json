@@ -5,7 +5,7 @@
   "main": "target/app.js",
   "scripts": {
     "prepublish": "coffee -o target/ -c src/",
-    "test": "coffeelint src/* test/*.coffee && coffee -o target/ -c src/ && coffee -c test/*.coffee && _mocha test && istanbul cover _mocha test/"
+    "test": "coffeelint src/* test/*.coffee && coffee -o target/ -c src/ && coffee -c test/*.coffee && istanbul cover _mocha test/"
   },
   "repository": {
     "type": "git",
