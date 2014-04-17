@@ -41,7 +41,7 @@ app.get '/get',(req, res) ->
   str += 'Hello World!'
   str += add( 2, 5 )
 
-  mysql.query "select * from cun", (err, docs) ->
+  mysql.query 'select * from '+Mysql.TABLE, (err, docs) ->
     if !err
       for doc in docs
         str += doc.name
