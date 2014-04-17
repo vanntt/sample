@@ -10,6 +10,33 @@ mysql.openConnection()
 app.use logfmt.requestLogger()
 
 app.get '/',(req, res) ->
+  queryStr = 'create table '+
+    Mysql.TABLE+
+    '(name varchar(400))'
+
+  mysql.query queryStr, (err, docs) ->
+    if !err
+      res.send 'Hello World! Create a table'
+    else
+      res.send 'Create table failed'
+
+app.get '/add',(req, res) ->
+  possible = 'abcdefghijklmnopqrstuvwxyz'
+  name = ''
+  for i in [0..5]
+    name += possible.charAt Math.floor Math.random() * possible.length
+
+  queryStr = 'insert into '+
+    Mysql.TABLE+
+    '(name) values('+name+')'
+
+  mysql.query queryStr, (err, docs) ->
+    if !err
+      res.send 'Create a row'
+    else
+      res.send 'Create a row failed'
+
+app.get '/get',(req, res) ->
   str = ''
   str += 'Hello World!'
   str += add( 2, 5 )

@@ -6,6 +6,7 @@ class Mysql
   Mysql.USER = 'b7c77e2cd0996c'
   Mysql.PASSWORD = 'b043648d'
   Mysql.DB = 'heroku_c02074c7e207b16'
+  Mysql.TABLE = 'users'
   
   openConnection: (host, user, password, dbName) ->
     connection =
