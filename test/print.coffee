@@ -10,4 +10,4 @@ describe 'Print', () ->
 
   describe 'printOrange', () ->
     it 'should print Orange', () ->
-      printOrange().should.equal 'Orangee'
+      printOrange().should.equal 'Orange'

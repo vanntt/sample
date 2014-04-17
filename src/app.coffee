@@ -19,8 +19,10 @@ app.get '/',(req, res) ->
       for doc in docs
         str += doc.name
       res.send str
+    else
+      res.send 'Cha co gi ca'
 
-port = Number(process.env.PORT || 8000)
+port = Number(process.env.PORT || 5000)
 
 app.listen port, () ->
   console.log 'Listening on ' + port
