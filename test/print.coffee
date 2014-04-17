@@ -6,7 +6,7 @@ assert = require 'assert'
 describe 'Print', () ->
   describe 'printApple', () ->
     it 'should print Apple', () ->
-      assert.equal( printApple(), 'Applec' )
+      assert.equal( printApple(), 'Apple' )
 
   describe 'printOrange', () ->
     it 'should print Orange', () ->
