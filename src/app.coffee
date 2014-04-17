@@ -5,7 +5,8 @@ Mysql = require './mysql'
 
 app = express()
 mysql = new Mysql
-mysql.openConnection 'us-cdbr-east-05.cleardb.net','b7c77e2cd0996c','b043648d','heroku_c02074c7e207b16'
+mysql.openConnection
+  'us-cdbr-east-05.cleardb.net','b7c77e2cd0996c','b043648d','heroku_c02074c7e207b16'
 
 app.use logfmt.requestLogger()
 
