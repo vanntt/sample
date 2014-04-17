@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "prepublish": "coffee -o target/ -c src/ && coffee -c test/*.coffee",
+    "prepublish": "coffee -o target/ -c src/",
     "test": "coffeelint src/* test/*.coffee && coffee -o target/ -c src/ && coffee -c test/*.coffee && _mocha test && istanbul cover _mocha test/"
   },
   "repository": {
