@@ -7,21 +7,33 @@ class Mysql
   Mysql.PASSWORD = 'b043648d'
   Mysql.DB = 'heroku_c02074c7e207b16'
   Mysql.TABLE = 'users'
-  
-  openConnection: () ->
+
+  Mysql.DB_CONFIG = 'mysql://'+
+    Mysql.USER+
+    ':'+
+    Mysql.PASSWORD+
+    '@'+
+    Mysql.HOST+
+    '/'+
+    Mysql.DB
+
+  handleDisconnect: () ->
     try
-      connection =
-        mysql.createConnection 'mysql://'+
-          Mysql.USER+
-          ':'+
-          Mysql.PASSWORD+
-          '@'+
-          Mysql.HOST+
-          '/'+
-          Mysql.DB
-      connection.connect()
+      connection = mysql.createConnection Mysql.DB_CONFIG
+      connection.connect (err) ->
+        if err
+          setTimeout @handleDisconnect, 1000
+
+      connection.on 'error', (err) ->
+        if err.code is 'PROTOCOL_CONNECTION_LOST'
+          @handleDisconnect()
+        else
+          throw err
     catch error
       'Error'
+  
+  openConnection: () ->
+    @handleDisconnect()
 
   query: (mysqlQuery, callback) ->
     try
@@ -29,5 +41,5 @@ class Mysql
         callback err, docs
     catch error
       'Error'
-        
+
 module.exports = Mysql
