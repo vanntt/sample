@@ -8,20 +8,26 @@ class Mysql
   Mysql.DB = 'heroku_c02074c7e207b16'
   Mysql.TABLE = 'users'
   
-  openConnection: (host, user, password, dbName) ->
-    connection =
-      mysql.createConnection 'mysql://'+
-        Mysql.USER+
-        ':'+
-        Mysql.PASSWORD+
-        '@'+
-        Mysql.HOST+
-        '/'+
-        Mysql.DB
-    connection.connect()
+  openConnection: () ->
+    try
+      connection =
+        mysql.createConnection 'mysql://'+
+          Mysql.USER+
+          ':'+
+          Mysql.PASSWORD+
+          '@'+
+          Mysql.HOST+
+          '/'+
+          Mysql.DB
+      connection.connect()
+    catch error
+      'Error'
 
   query: (mysqlQuery, callback) ->
-    connection.query mysqlQuery, (err, docs) ->
-      callback err, docs
+    try
+      connection.query mysqlQuery, (err, docs) ->
+        callback err, docs
+    catch error
+      'Error'
         
 module.exports = Mysql
