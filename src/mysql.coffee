@@ -18,11 +18,13 @@ class Mysql
         Mysql.HOST+
         '/'+
         Mysql.DB
+    connection.connect()
 
   query: (mysqlQuery, callback) ->
-    connection.connect (error) ->
-      if !error
-        connection.query mysqlQuery, (err, docs) ->
-          callback err, docs
+    connection.query mysqlQuery, (err, docs) ->
+      callback err, docs
+
+   end: () ->
+     connection.end()
         
 module.exports = Mysql

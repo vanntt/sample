@@ -19,6 +19,7 @@ app.get '/',(req, res) ->
       res.send 'Hello World! Create a table'
     else
       res.send 'Create table failed'
+    mysql.end()
 
 app.get '/add',(req, res) ->
   possible = 'abcdefghijklmnopqrstuvwxyz'
@@ -35,6 +36,7 @@ app.get '/add',(req, res) ->
       res.send 'Create a row'
     else
       res.send 'Create a row failed'
+    mysql.end()
 
 app.get '/get',(req, res) ->
   str = ''
@@ -48,6 +50,7 @@ app.get '/get',(req, res) ->
       res.send str
     else
       res.send 'Cha co gi ca'
+    mysql.end()
 
 port = Number(process.env.PORT || 5000)
 
