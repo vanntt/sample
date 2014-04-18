@@ -18,6 +18,7 @@ class Mysql
     Mysql.DB
 
   handleDisconnect: () ->
+    self = this
     try
       connection = mysql.createConnection Mysql.DB_CONFIG
       connection.connect (err) ->
@@ -26,7 +27,7 @@ class Mysql
 
       connection.on 'error', (err) ->
         if err.code is 'PROTOCOL_CONNECTION_LOST'
-          @handleDisconnect()
+          self.handleDisconnect()
         else
           throw err
     catch error
