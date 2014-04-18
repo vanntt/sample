@@ -23,8 +23,5 @@ class Mysql
   query: (mysqlQuery, callback) ->
     connection.query mysqlQuery, (err, docs) ->
       callback err, docs
-
-   end: () ->
-     connection.end()
         
 module.exports = Mysql
