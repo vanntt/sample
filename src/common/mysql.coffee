@@ -1,21 +1,17 @@
 class Mysql
-  mysql = require 'mysql'
+  mysql = require('mysql')
+  config = require('../config/config')
   connection = null
 
-  Mysql.HOST = 'us-cdbr-east-05.cleardb.net'
-  Mysql.USER = 'b7c77e2cd0996c'
-  Mysql.PASSWORD = 'b043648d'
-  Mysql.DB = 'heroku_c02074c7e207b16'
-  Mysql.TABLE = 'users'
 
   Mysql.DB_CONFIG = 'mysql://'+
-    Mysql.USER+
+    config.DB_USER+
     ':'+
-    Mysql.PASSWORD+
+    config.DB_PASS+
     '@'+
-    Mysql.HOST+
+    config.DB_HOST+
     '/'+
-    Mysql.DB
+    config.DB_NAME
 
   handleDisconnect: () ->
     self = this

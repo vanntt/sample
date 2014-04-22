@@ -1,5 +1,5 @@
-printApple = require( '../target/print' ).printApple
-printOrange = require( '../target/print' ).printOrange
+printApple = require( '../target/common/print' ).printApple
+printOrange = require( '../target/common/print' ).printOrange
 should = require 'should'
 assert = require 'assert'
 

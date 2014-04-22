@@ -1,4 +1,4 @@
-Mysql = require '../target/mysql'
+Mysql = require '../target/common/mysql'
 should = require 'should'
 assert = require 'assert'
 

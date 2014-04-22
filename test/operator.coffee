@@ -1,5 +1,5 @@
-add = require('../target/operator').add
-pow = require('../target/operator').pow
+add = require('../target/common/operator').add
+pow = require('../target/common/operator').pow
 assert = require 'assert'
 should = require 'should'
 
