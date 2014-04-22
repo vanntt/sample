@@ -1,5 +1,5 @@
 exports.setEnvironment = (env) ->
-  console.log "set app environment: #{env}"
+  console.log("set app environment: #{env}")
   switch(env)
     when "development"
       exports.DB_HOST = 'us-cdbr-east-05.cleardb.net'
@@ -17,4 +17,4 @@ exports.setEnvironment = (env) ->
       exports.DB_PASS = 'b043648d'
       exports.DB_TABLE = 'users'
     else
-      console.log "environment #{env} not found"
+      console.log("environment #{env} not found")

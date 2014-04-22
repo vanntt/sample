@@ -1,16 +1,16 @@
-Mysql = require '../target/common/mysql'
-should = require 'should'
-assert = require 'assert'
+Mysql = require('../target/common/mysql')
+should = require('should')
+assert = require('assert')
 
-describe 'Mysql', () ->
-  describe 'openConnection', () ->
-    it 'no error', (done) ->
+describe('Mysql', () ->
+  describe('openConnection', () ->
+    it('no error', (done) ->
       mysql = new Mysql()
       mysql.openConnection()
-      done()
+      done()))
 
-  describe 'query', () ->
-    it 'no error', (done) ->
+  describe('query', () ->
+    it('no error', (done) ->
       mysql = new Mysql()
-      mysql.query 'select * from '+Mysql.TABLE
-      done()
+      mysql.query('select * from '+Mysql.TABLE)
+      done())))

@@ -1,5 +1,9 @@
 {
     "no_implicit_parens": {
-        "level": "ignore"
+        "level": "error"
+    },
+    "spaceInsideParenthesis": {
+         "module": "rules/spaceInsideParenthesis",
+         "level": "error"
     }
 }

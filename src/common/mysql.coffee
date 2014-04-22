@@ -3,7 +3,6 @@ class Mysql
   config = require('../config/config')
   connection = null
 
-
   Mysql.DB_CONFIG = 'mysql://'+
     config.DB_USER+
     ':'+
@@ -16,16 +15,16 @@ class Mysql
   handleDisconnect: () ->
     self = this
     try
-      connection = mysql.createConnection Mysql.DB_CONFIG
-      connection.connect (err) ->
+      connection = mysql.createConnection(Mysql.DB_CONFIG)
+      connection.connect((err) ->
         if err
-          setTimeout @handleDisconnect, 1000
+          setTimeout(@handleDisconnect, 1000))
 
-      connection.on 'error', (err) ->
+      connection.on('error', (err) ->
         if err.code is 'PROTOCOL_CONNECTION_LOST'
           self.handleDisconnect()
         else
-          throw err
+          throw(err))
     catch error
       'Error'
   
@@ -34,8 +33,8 @@ class Mysql
 
   query: (mysqlQuery, callback) ->
     try
-      connection.query mysqlQuery, (err, docs) ->
-        callback err, docs
+      connection.query(mysqlQuery, (err, docs) ->
+        callback(err, docs))
     catch error
       'Error'
 

@@ -15,7 +15,7 @@ class DbStats
     @startTime = new Date().getTime()
 
   afterExecuteQuery: () ->
-    @addQuery (new Date().getTime()) - @startTime
+    @addQuery((new Date().getTime()) - @startTime)
 
   getStats: () ->
     'totalQueries':@totalQueries, 'totalTimeSeconds':@totalTimeMillisecond+'ms'

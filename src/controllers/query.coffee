@@ -1,5 +1,5 @@
-Mysql = require '../common/mysql'
-DbStats = require '../common/dbstat'
+Mysql = require('../common/mysql')
+DbStats = require('../common/dbstat')
 config = require('../config/config')
 
 dbStats = new DbStats()
@@ -10,7 +10,7 @@ mysql.openConnection()
 exports.index = (req, data, render) ->
   dbStats.init()
   dbStats.beforeExecuteQuery()
-  mysql.query 'select * from '+config.DB_TABLE, (err, docs) ->
+  mysql.query('select * from '+config.DB_TABLE, (err, docs) ->
     dbStats.afterExecuteQuery()
     if !err
       data.docs = docs
@@ -20,4 +20,5 @@ exports.index = (req, data, render) ->
       data.docs = null
       data.totalQueries = dbStats.getStats().totalQueries
       data.totalTimeSeconds = dbStats.getStats().totalTimeSeconds
-    render false
+    render(false)
+  )
