@@ -1,24 +1,26 @@
-Mysql = require('../common/mysql')
 DbStats = require('../common/dbstat')
-config = require('../config/config')
+User = require('../models/user')
 
 dbStats = new DbStats()
-
-mysql = new Mysql
-mysql.openConnection()
 
 exports.index = (req, data, render) ->
   dbStats.init()
   dbStats.beforeExecuteQuery()
-  mysql.query('select * from '+config.DB_TABLE, (err, docs) ->
+
+  @user = new User()
+  @user.getAllUsers((users) ->
     dbStats.afterExecuteQuery()
-    if !err
-      data.docs = docs
-      data.totalQueries = dbStats.getStats().totalQueries
-      data.totalTimeSeconds = dbStats.getStats().totalTimeSeconds
-    else
-      data.docs = null
-      data.totalQueries = dbStats.getStats().totalQueries
-      data.totalTimeSeconds = dbStats.getStats().totalTimeSeconds
+    data.users = users
+    data.totalQueries = dbStats.getStats().totalQueries
+    data.totalTimeSeconds = dbStats.getStats().totalTimeSeconds
     render(false)
+    )
+    
+exports.add = (req, data, render) ->
+  dbStats.init()
+  dbStats.beforeExecuteQuery()
+
+  @user.addUser(req.query.user_name, () ->
+    data.success = true
+    render(true)
   )

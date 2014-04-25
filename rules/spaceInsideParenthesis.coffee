@@ -9,7 +9,9 @@ class spaceInsideParenthesis
     
     if ((line.indexOf('(') isnt -1) and (line.indexOf(')') isnt -1))
       
-      if line.charAt(line.indexOf('(') + 1) is ' ' or (line.charAt(line.indexOf(')') - 1) is ' ' and line.charAt(line.indexOf(')') + 1) isnt '->') then return { context: 'Unexpect space after and before parenthesis' }
+      if line.charAt(line.indexOf('(') + 1) is ' ' or
+        (line.charAt(line.indexOf(')') - 1) is ' ' and
+          line.charAt(line.indexOf(')') + 1) isnt '->') then return { context: 'Unexpect space after and before parenthesis' }
     
     else return null
 

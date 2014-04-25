@@ -1,5 +1,5 @@
 class Operator
-  @add: ( a, b) ->
+  @add: (a, b) ->
     a + b
   
   @pow: (exp, base) ->
