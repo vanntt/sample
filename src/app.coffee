@@ -16,7 +16,7 @@ app.use(express.static(process.cwd() + "/public"))
 routes = require('./routes')
 routes(app)
 
-port = Number(process.env.PORT || 8000)
+port = Number(process.env.PORT || 5000)
 
 app.listen(port, () ->
   console.log('Listening on ' + port))
