@@ -2,7 +2,8 @@ module.exports = class User
 
   Config = require('../config/config')
 
-  constructor: (@name) ->
+  constructor: (name) ->
+    @name = User.mysqlRealEscapeString(name)
 
   @setConnection: (@mysql) ->
   
@@ -26,6 +27,7 @@ module.exports = class User
 
   @addUser: (userName, callback) ->
     if @mysql
+      userName = User.mysqlRealEscapeString(userName)
       queryString = "insert into #{Config.DB_TABLE}(name) values (\'#{userName}\')"
       @mysql.query(queryString, (err,docs) ->
         if !err
@@ -34,8 +36,21 @@ module.exports = class User
 
   editUser: (newName, callback) ->
     if @mysql
+      newName = User.mysqlRealEscapeString(newName)
       queryString = "update #{Config.DB_TABLE} set name = \'#{newName}\' where name = \'#{@name}\'"
       @mysql.query(queryString, (err,docs) ->
         if !err
           callback()
       )
+
+  @mysqlRealEscapeString: (string) ->
+    string.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, (char) ->
+      switch (char)
+        when "\0" then return "\\0"
+        when "\x08" then return "\\b"
+        when "\x09" then return "\\t"
+        when "\x1a" then return "\\z"
+        when "\n" then return "\\n"
+        when "\r" then return "\\r"
+        when "\"", "'", "\\", "%" then return "\\"+char
+    )
