@@ -24,15 +24,15 @@ exports.add = (req, data, render) ->
   dbStats.init()
   dbStats.beforeExecuteQuery()
 
-  User.addUser(req.query.user_name, () ->
+  User.addUser(req.query.userName, () ->
     data.success = true
     render(true)
   )
 
 exports.edit = (req, data, render) ->
-  user = new User(req.query.before_user_name)
+  user = new User(req.query.beforeUserName)
   user.setConnection(mysql)
-  user.editUser(req.query.after_user_name, () ->
+  user.editUser(req.query.afterUserName, () ->
     data.success = true
     render(true)
   )

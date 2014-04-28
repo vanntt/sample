@@ -11,33 +11,31 @@ module.exports = class User
   getName: () ->
     @name
 
-  setName: (_name) ->
-    @name = _name
+  setName: (name) ->
+    @name = name
 
-  @getAllUsers: (cb) ->
+  @getAllUsers: (callback) ->
     if @mysql
-      @mysql.query('select * from '+Config.DB_TABLE, (err, docs) ->
+      @mysql.query("select * from #{Config.DB_TABLE}", (err, docs) ->
         if !err
           users = []
           for doc in docs
             users.push(new User(doc.name))
-          cb(users)
+          callback(users)
       )
 
-  @addUser: (user_name, cb) ->
+  @addUser: (userName, callback) ->
     if @mysql
-      queryStr = 'insert into '+Config.DB_TABLE+
-          '(name) values (\''+user_name+'\')'
-      @mysql.query(queryStr, (err,docs) ->
+      queryString = "insert into #{Config.DB_TABLE}(name) values (\'#{userName}\')"
+      @mysql.query(queryString, (err,docs) ->
         if !err
-          cb()
+          callback()
       )
 
-  editUser: (newName, cb) ->
+  editUser: (newName, callback) ->
     if @mysql
-      queryStr = 'update '+Config.DB_TABLE+
-          ' set name = \''+newName+'\' where name = \''+@name+'\''
-      @mysql.query(queryStr, (err,docs) ->
+      queryString = "update #{Config.DB_TABLE} set name = \'#{newName}\' where name = \'#{@name}\'"
+      @mysql.query(queryString, (err,docs) ->
         if !err
-          cb()
+          callback()
       )

@@ -8,7 +8,7 @@ form action:"/query/add", method:"get", ->
   table ->
     tr ->
       td -> "Name: "
-      td -> input name:"user_name",type:"text",->
+      td -> input name:"userName",type:"text",->
     tr ->
       td ->
       td -> input type:"submit", -> "Add"
@@ -18,10 +18,10 @@ form action:"/query/edit", method:"get", ->
   table ->
     tr ->
       td -> "Name: "
-      td -> input name:"before_user_name",type:"text",->
+      td -> input name:"beforeUserName",type:"text",->
     tr ->
       td -> "To another name: "
-      td -> input name:"after_user_name",type:"text",->
+      td -> input name:"afterUserName",type:"text",->
     tr ->
       td ->
       td -> input type:"submit", -> "Edit"

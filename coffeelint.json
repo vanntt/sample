@@ -5,5 +5,8 @@
     "spaceInsideParenthesis": {
          "module": "rules/spaceInsideParenthesis",
          "level": "error"
+    },
+    "max_line_length": {
+        "level": "ignore"
     }
 }
