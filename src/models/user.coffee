@@ -2,8 +2,7 @@ module.exports = class User
 
   Config = require('../config/config')
 
-  constructor: (name) ->
-    @name = User.mysqlRealEscapeString(name)
+  constructor: (@name) ->
 
   @setConnection: (@mysql) ->
   
@@ -37,7 +36,8 @@ module.exports = class User
   editUser: (newName, callback) ->
     if @mysql
       newName = User.mysqlRealEscapeString(newName)
-      queryString = "update #{Config.DB_TABLE} set name = \'#{newName}\' where name = \'#{@name}\'"
+      tmpName = User.mysqlRealEscapeString(@name)
+      queryString = "update #{Config.DB_TABLE} set name = \'#{newName}\' where name = \'#{@tmpName}\'"
       @mysql.query(queryString, (err,docs) ->
         if !err
           callback()
